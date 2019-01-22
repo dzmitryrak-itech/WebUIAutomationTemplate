@@ -1,3 +1,8 @@
-# Mobile
+#Purpose
+Improve skills in mobile application testing
 
-Mobile FrameWork project.
+#Tutorial
+https://www.swtestacademy.com/appium-tutorial/
+
+#Technology Stack
+Java = Maven + Selenoid + Appium
