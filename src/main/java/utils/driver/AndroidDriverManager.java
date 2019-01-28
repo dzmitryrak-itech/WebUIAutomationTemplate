@@ -1,7 +1,8 @@
-package auto.ru.utilities.driver;
+package utils.driver;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.remote.MobilePlatform;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,7 +18,7 @@ public class AndroidDriverManager extends DriverManager {
         capabilities.setCapability("appActivity","ru.auto.ara.MainActivity");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2_Android_9");
         capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554"); //DeviceId from "adb devices" command
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
 
         //TODO move URL to properties
