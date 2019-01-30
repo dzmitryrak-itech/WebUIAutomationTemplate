@@ -2,31 +2,25 @@ package utils.driver;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.remote.MobilePlatform;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import utils.IOUtils;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class AndroidDriverManager extends DriverManager {
 
+    /**https://github.com/appium/java-client/blob/master/docs/The-starting-of-an-app-using-Appium-node-server-started-programmatically.md#fyi
+     *
+     * @param service
+     */
     @Override
-    public void createDriver(){
+    public void createDriver(AppiumDriverLocalService service){
+        //https://stackoverflow.com/questions/50326760/unable-to-launch-chrome-browser-appium1-8-android7-0
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+        //http://appium.io/docs/en/advanced-concepts/parallel-tests/
+        capabilities.setCapability("systemPort", IOUtils.nextFreePort());
 
-        //TODO leave only capabilities related to Android
-        capabilities.setCapability("appPackage", "ru.auto.ara");
-        capabilities.setCapability("appActivity","ru.auto.ara.MainActivity");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2_Android_9");
-        capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554"); //DeviceId from "adb devices" command
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
-
-        //TODO move URL to properties
-        try {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        driver = new AndroidDriver(service, capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 }
