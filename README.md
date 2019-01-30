@@ -19,7 +19,7 @@ Java + Maven + Selenoid + Appium
 
 # How to
 
-* ```mvn clean install -DsuiteXmlFile=testng-properties.xml``` - to run tests
+* ```mvn clean install -DsuiteXmlFile=testng-properties.xml allure:serve``` - to run tests
 * ```allure serve target/allure-results``` - to view test report
 * ```mvn versions:display-plugin-updates``` - check for latest updated from Maven repo
 
