@@ -5,6 +5,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.AndroidServerFlag;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import utils.IOUtils;
+import utils.PropertyManager;
 
 import java.io.File;
 
@@ -14,13 +15,11 @@ public final class AppiumUtils {
         AppiumDriverLocalService service = AppiumDriverLocalService.buildService(
                 new AppiumServiceBuilder()
                         .usingPort(IOUtils.nextFreePort())
-                        //TODO move URL to peroperties
-                        .withIPAddress( "127.0.0.1" )
+                        .withIPAddress(PropertyManager.getInstance().get("appium.server.url"))
                         .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "warn")
                         .withArgument(AndroidServerFlag.BOOTSTRAP_PORT_NUMBER, String.valueOf(IOUtils.nextFreePort()))
-                        //TODO read from property
-                        .withAppiumJS(new File("C:\\Users\\Dzmitry.Rak\\AppData\\Local\\Programs\\Appium\\resources\\app\\node_modules\\appium\\build\\lib\\main.js")));
+                        .withAppiumJS(new File(PropertyManager.getInstance().get("appium.server.js.path"))));
         service.start();
         return service;
     }
