@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.PropertyManager;
 
 /**
  * https://github.com/celikgumusdag/appium-driver-manager/tree/master/src/main/java/Driver
@@ -17,9 +18,8 @@ public abstract class DriverManager {
 
     public AppiumDriver getDriver(String deviceName, String udid, String platform, String version, AppiumDriverLocalService service) {
         if (null == driver) {
-            //TODO read app name from properties
-            capabilities.setCapability("appPackage", "ru.auto.ara");
-            capabilities.setCapability("appActivity","ru.auto.ara.MainActivity");
+            capabilities.setCapability("appPackage", PropertyManager.getInstance().get("application.package.name"));
+            capabilities.setCapability("appActivity", PropertyManager.getInstance().get("application.activity.name"));
 
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platform);
             capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, version);

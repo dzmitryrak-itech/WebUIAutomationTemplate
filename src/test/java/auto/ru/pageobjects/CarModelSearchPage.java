@@ -19,11 +19,11 @@ public class CarModelSearchPage extends BasePage{
     @AndroidFindBy(id = "ru.auto.ara:id/search_btn")
     private MobileElement searchButton;
 
-    public static final String MODEL_CHECKBOX_XPATH = "//android.widget.TextView[contains(@text, '%s')]/../../android.widget.CheckBox";
-    public static final String ALL_MODELS_CHECKBOX_XPATH = "//android.widget.TextView[contains(@text, 'Выбрать все')]/../android.widget.CheckBox";
-    public static final String PARENT_MODEL_XPATH = "//android.widget.TextView[contains(@text, '%s')]/../../android.widget.ImageView";
-    public static final String SEARCH_INPUT_ID= "ru.auto.ara:id/search_view";
-    public static final String MODEL_LIST_ID= "ru.auto.ara:id/list";
+    private static final String MODEL_CHECKBOX_XPATH = "//android.widget.TextView[contains(@text, '%s')]/../../android.widget.CheckBox";
+    private static final String ALL_MODELS_CHECKBOX_XPATH = "//android.widget.TextView[contains(@text, 'Выбрать все')]/../android.widget.CheckBox";
+    private static final String PARENT_MODEL_XPATH = "//android.widget.TextView[contains(@text, '%s')]/../../android.widget.ImageView";
+    private static final String SEARCH_INPUT_ID= "ru.auto.ara:id/search_view";
+    private static final String MODEL_LIST_ID= "ru.auto.ara:id/list";
 
     public CarModelSearchPage(AppiumDriver<MobileElement> driver){
         super(driver);
