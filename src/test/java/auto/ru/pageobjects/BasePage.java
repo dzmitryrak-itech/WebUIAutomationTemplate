@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.offset.PointOption;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +27,8 @@ class BasePage {
     private static final int TIMEOUT = 5;
     private static final int POLLING = 100;
 
-    private static final By PROGRESS_LOADER_BY = By.id("ru.auto.ara:id/progressView");
+    //TODO use this indicator to wait for loading of lists
+    public static final By PROGRESS_LOADER_BY = By.id("ru.auto.ara:id/progressView");
 
     BasePage(AppiumDriver<MobileElement> driver){
         this.driver = driver;
@@ -38,17 +40,24 @@ class BasePage {
         PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), page);
     }
 
-    void waitForElementToAppear(MobileElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    boolean waitForElementToAppear(MobileElement element) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        }catch (TimeoutException ex){
+            return false;
+        }
     }
 
-    void waitForElementToDissapear(MobileElement element){
-        wait.until(ExpectedConditions.invisibilityOf(element));
+    boolean waitForElementToDissapear(MobileElement element){
+        try {
+            wait.until(ExpectedConditions.invisibilityOf(element));
+            return true;
+        }catch (TimeoutException ex){
+            return false;
+        }
     }
 
-    void waitForProgressLoaderToDissapear(){
-        waitForElementToDissapear(driver.findElement(PROGRESS_LOADER_BY));
-    }
     /**
      *
      * @param locatorForScrollableElement - element where user can swipe
