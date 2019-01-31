@@ -1,5 +1,6 @@
 package utils.driver;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -14,7 +15,7 @@ public class AndroidDriverManager extends DriverManager {
      * @param service
      */
     @Override
-    public void createDriver(AppiumDriverLocalService service){
+    public AppiumDriver createDriver(AppiumDriverLocalService service){
         //https://stackoverflow.com/questions/50326760/unable-to-launch-chrome-browser-appium1-8-android7-0
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         //http://appium.io/docs/en/advanced-concepts/parallel-tests/
@@ -22,5 +23,6 @@ public class AndroidDriverManager extends DriverManager {
 
         driver = new AndroidDriver(service, capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        return driver;
     }
 }

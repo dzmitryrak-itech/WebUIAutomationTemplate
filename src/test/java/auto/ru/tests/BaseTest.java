@@ -32,7 +32,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void startDriverAndApplication() {
-        DriverManager manager = DriverManagerFactory.getManager(platform);
+        DriverManager manager = new DriverManagerFactory().getManager(platform);
         driver = manager.getDriver(deviceName, udid, platform, version, appiumService);
         searchSteps = new SearchSteps(driver);
     }

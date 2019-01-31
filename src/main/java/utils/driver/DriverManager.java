@@ -13,7 +13,7 @@ public abstract class DriverManager {
     AppiumDriver driver;
     DesiredCapabilities capabilities = new DesiredCapabilities();
 
-    protected abstract void createDriver(AppiumDriverLocalService service);
+    protected abstract AppiumDriver createDriver(AppiumDriverLocalService service);
 
     public AppiumDriver getDriver(String deviceName, String udid, String platform, String version, AppiumDriverLocalService service) {
         if (null == driver) {
@@ -25,7 +25,7 @@ public abstract class DriverManager {
             capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, version);
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capabilities.setCapability(MobileCapabilityType.UDID, udid); //DeviceId from "adb devices" command
-            createDriver(service);
+            driver = createDriver(service);
         }
         return driver;
     }
