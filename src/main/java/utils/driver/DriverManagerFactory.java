@@ -1,8 +1,8 @@
-package auto.ru.utilities.driver;
+package utils.driver;
 
 public class DriverManagerFactory {
 
-    public static DriverManager getManager() {
+    public DriverManager getManager() {
 
         DriverManager driverManager;
 
