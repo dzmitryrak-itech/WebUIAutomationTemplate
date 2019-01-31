@@ -3,12 +3,14 @@ package utils.driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import utils.PropertyManager;
 
 /**
  * https://github.com/celikgumusdag/appium-driver-manager/tree/master/src/main/java/Driver
  */
+@Log4j2
 public abstract class DriverManager {
 
     AppiumDriver driver;
@@ -26,6 +28,7 @@ public abstract class DriverManager {
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capabilities.setCapability(MobileCapabilityType.UDID, udid); //DeviceId from "adb devices" command
             driver = createDriver(service);
+            log.debug(String.format("Setting capabilities for driver: %s", capabilities));
         }
         return driver;
     }

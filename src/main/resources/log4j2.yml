@@ -1,0 +1,48 @@
+#https://springframework.guru/log4j-2-configuration-using-yaml/
+#https://logging.apache.org/log4j/2.x/manual/configuration.html
+Configuration:
+  status: debug
+  Properties:
+    Property:
+      - name: "logDir"
+        value: "logs"
+      - name: "DefaultPattern"
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] - %msg%n"
+  Appenders:
+    Console:
+        name: consoleAppender
+        target: SYSTEM_OUT
+        PatternLayout:
+          Pattern: ${DefaultPattern}
+    RollingFile:
+        name: fileAppender
+        fileName: ${logDir}/app.log
+        filePattern: "logs/archive/app.log.%d{yyyy-MM-dd-hh-mm}.gz"
+        PatternLayout:
+          pattern: ${DefaultPattern}
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 1 KB
+        DefaultRollOverStrategy:
+          max: 0
+  Loggers:
+    logger:
+      -
+        name: consoleLogger
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: consoleAppender
+      -
+        name: fileLogger
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: fileAppender
+    Root:
+      level: debug
+      AppenderRef:
+       - ref: fileAppender
+         level: debug
+       - ref: consoleAppender
+         level: trace
