@@ -1,4 +1,4 @@
-package auto.ru.utilities.driver;
+package utils.driver;
 
 public enum DriverType {
     ANDROID,
