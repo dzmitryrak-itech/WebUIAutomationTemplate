@@ -8,7 +8,7 @@ import auto.ru.pageobjects.CarModelSearchPage;
 import auto.ru.pageobjects.CarsListPage;
 import auto.ru.pageobjects.SearchPage;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
+import io.qameta.allure.Step;
 
 public class SearchSteps {
 
@@ -17,13 +17,14 @@ public class SearchSteps {
     private CarModelSearchPage carModelSearchPage;
     private CarsListPage carList;
 
-    public SearchSteps(AppiumDriver <MobileElement> driver){
+    public SearchSteps(AppiumDriver driver){
         searchPage = new SearchPage(driver);
         carMakeSearchPage = new CarMakeSearchPage(driver);
         carModelSearchPage = new CarModelSearchPage(driver);
         carList = new CarsListPage(driver);
     }
 
+    @Step("Search for a car by provided criteria: {searchCriteria.make}, {searchCriteria.models}")
     public SearchSteps searchByCriteria(SearchCriteria searchCriteria){
         searchPage.clickToSelectMakeButton();
         carMakeSearchPage.clickToMakeByText(searchCriteria.getMake());
@@ -39,6 +40,7 @@ public class SearchSteps {
         return this;
     }
 
+    @Step("Search for a car by provided criteria: {searchCriteria.make}, {searchCriteria.models} while using search at each page")
     public SearchSteps searchByCriteriaUsingSearch(SearchCriteria searchCriteria){
         searchPage.clickToSelectMakeButton();
         carMakeSearchPage.searchForMake(searchCriteria.getMake().getName())

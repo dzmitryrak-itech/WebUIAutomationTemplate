@@ -2,12 +2,11 @@ package utils.driver;
 
 public class DriverManagerFactory {
 
-    public DriverManager getManager() {
+    public static DriverManager getManager(String driverType) {
 
         DriverManager driverManager;
 
-        //TODO read from property file
-        DriverType type = DriverType.valueOf("Android".toUpperCase());
+        DriverType type = DriverType.valueOf(driverType.toUpperCase());
 
         switch (type) {
             case ANDROID:
