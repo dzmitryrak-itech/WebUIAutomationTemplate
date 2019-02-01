@@ -8,6 +8,7 @@ import utils.appium.AppiumUtils;
 import utils.driver.DriverManager;
 import utils.driver.DriverManagerFactory;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     private String deviceName = "Pixel 2 Android 9";
     private String udid = "emulator-5554";
@@ -32,7 +33,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void startDriverAndApplication() {
-        DriverManager manager = new DriverManagerFactory().getManager(platform);
+        DriverManager manager = DriverManagerFactory.getManager(platform);
         driver = manager.getDriver(deviceName, udid, platform, version, appiumService);
         searchSteps = new SearchSteps(driver);
     }
@@ -46,5 +47,9 @@ public class BaseTest {
     void stopAppiumServer(){
         driver.quit();
         appiumService.stop();
+    }
+
+    AppiumDriver getDriver(){
+        return driver;
     }
 }

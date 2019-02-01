@@ -5,7 +5,7 @@ Configuration:
   Properties:
     Property:
       - name: "logDir"
-        value: "logs"
+        value: "target/logs"
       - name: "DefaultPattern"
         value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] - %msg%n"
   Appenders:
@@ -17,26 +17,26 @@ Configuration:
     RollingFile:
         name: fileAppender
         fileName: ${logDir}/app.log
-        filePattern: "logs/archive/app.log.%d{yyyy-MM-dd-hh-mm}.gz"
+        filePattern: "target/logs/archive/app.log.%d{yyyy-MM-dd-hh-mm}.gz"
         PatternLayout:
           pattern: ${DefaultPattern}
         Policies:
           SizeBasedTriggeringPolicy:
-            size: 1 KB
+            size: 1 MB
         DefaultRollOverStrategy:
-          max: 0
+          max: 5
   Loggers:
     logger:
       -
         name: consoleLogger
         level: debug
-        additivity: false
+        additivity: true
         AppenderRef:
           ref: consoleAppender
       -
         name: fileLogger
         level: debug
-        additivity: false
+        additivity: true
         AppenderRef:
           ref: fileAppender
     Root:

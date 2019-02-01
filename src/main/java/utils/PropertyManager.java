@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Log4j2
-public class PropertyManager {
+public final class PropertyManager {
 
     private static PropertyManager instance;
     private static final Object lock = new Object();
@@ -37,7 +37,11 @@ public class PropertyManager {
     }
 
     public String get(String propertyName){
-        log.debug(String.format("Getting property by name %s", propertyName));
+        log.debug(String.format("Getting property by name %s. Value: %s", propertyName, prop.getProperty(propertyName)));
         return prop.getProperty(propertyName);
+    }
+
+    private PropertyManager(){
+
     }
 }

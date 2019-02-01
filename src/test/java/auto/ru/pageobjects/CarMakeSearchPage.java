@@ -4,9 +4,12 @@ import auto.ru.model.Make;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
+@Log4j2
 public class CarMakeSearchPage extends BasePage {
 
     @AndroidFindBy(id = "ru.auto.ara:id/search_btn")
@@ -32,13 +35,21 @@ public class CarMakeSearchPage extends BasePage {
             scrollToElement(
                     By.id(MAKE_LIST_ID),
                     parentMake);
-            driver.findElement(parentMake).click();
+            try {
+                driver.findElement(parentMake).click();
+            } catch (NoSuchElementException ex){
+                log.error(String.format("Cannot find element by %s", parentMake));
+            }
         }
         By makeElement = By.xpath(String.format(MAKE_XPATH, make.getName()));
         scrollToElement(
                 By.id(MAKE_LIST_ID),
                 makeElement);
-        driver.findElement(makeElement).click();
+        try {
+            driver.findElement(makeElement).click();
+        } catch (NoSuchElementException ex){
+            log.error(String.format("Cannot find element by %s", makeElement));
+        }
         return this;
     }
 
