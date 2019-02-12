@@ -1,6 +1,8 @@
 package utils.driver;
 
 public enum DriverType {
-    ANDROID,
-    IOS
+    CHROME,
+    FIREFOX,
+    IE10,
+    SAFARI
 }

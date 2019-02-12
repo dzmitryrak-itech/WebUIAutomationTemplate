@@ -2,21 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="2" name="Auto.ru - Full test suite" parallel="tests">
     <test name="Pixel 2 - Android 9">
-        <parameter name="deviceName" value="Pixel 2 - Android 9"/>
-        <parameter name="udid" value="emulator-5554"/>
-        <parameter name="platform" value="Android"/>
-        <parameter name="version" value="9.0"/>
         <classes>
-            <class name="auto.ru.tests.AutoRuOtherTests"/>
+            <class name="com.seniorlink.tests.LoginPageTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="Nexus 6 - Android 8.1">
-        <parameter name="deviceName" value="Nexus 6 - Android 8.1"/>
-        <parameter name="udid" value="emulator-5556"/>
-        <parameter name="platform" value="Android"/>
-        <parameter name="version" value="8.1"/>
         <classes>
-            <class name="auto.ru.tests.AutoRuSearchTests"/>
+            <class name="com.seniorlink.tests.LoginPageTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>
