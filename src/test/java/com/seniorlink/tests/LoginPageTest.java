@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class LoginPageTest extends BaseTest {
 
     @Test
-    @Description("Search for All models of specific make")
+    @Description("Login into the app")
     public void loginByUser () {
         loginSteps.login("EMAIL", "PASSWORD");
     }
