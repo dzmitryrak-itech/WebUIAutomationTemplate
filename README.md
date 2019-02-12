@@ -2,6 +2,14 @@
 
 UI automated testing framework template
 
+# Precondition
+
+* Install Java
+* Install Maven
+* Install IntelliJ IDEA (preferred IDE)
+* Install Lombok plugin for your IDE
+* Install Allure commandline https://docs.qameta.io/allure/#_installing_a_commandline
+
 # Tutorials
 
 * Lombok: https://www.baeldung.com/intro-to-project-lombok
